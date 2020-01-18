@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import "./Person.css";
 
 
@@ -13,4 +14,4 @@ return(
 )
 }
 
-export default person;
+export default Radium(person);
