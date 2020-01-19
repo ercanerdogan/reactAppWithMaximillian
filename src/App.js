@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
-// import Radium, { StyleRoot } from 'radium';
-import styled from 'styled-components';
-import './App.css';
+// import styles from "./Styles/Styles.module.css";
+import classes from "./App.module.css"
 import Person from './Person/Person';
 
-const StyledButton=styled.button`
-  background-color : ${props=>props.alt ? 'red' : 'green'};
-  color:white;
-  font :inherit;
-  border : 1px solid blue;
-  padding : 8px;
-  cursor : pointer;
-
-  &:hover {
-    background-color : ${props=>props.alt ? 'salmon' : 'lightgreen'};;
-    color :black;
-  }
-`;
 
 class App extends Component{
   state={
@@ -58,19 +44,7 @@ class App extends Component{
   }
 
   render() {
-    // const style ={
-    //   backgroundColor :'green',
-    //   color:'white',
-    //   font :'inherit',
-    //   border : '1px solid blue',
-    //   padding : '8px',
-    //   cursor : 'pointer',
-    //   ':hover' :{
-    //     backgroundColor : 'lightgreen',
-    //     color :'black'
-    //   }
-
-    // }
+    let btnClass = '';
 
     let persons=null;
 
@@ -88,33 +62,28 @@ class App extends Component{
         </div>
       );
 
-      // style.backgroundColor ='red';
-      // style[':hover'] ={
-      //   backgroundColor :'salmon',
-      //   color:'black'
-      // }
+      btnClass = classes.Red;
     }
 
-    const classes =[];
+    let asignedClasses ='';
 
     if (this.state.persons.length<=2){
-      classes.push("red");
+      asignedClasses = classes.red;
     }
 
     if (this.state.persons.length<=1){
-      classes.push("bold")
+      asignedClasses = classes.bold;
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
           <h1>Hi, I am a React App</h1>
-          <p className={classes.join(' ')}>This is working...</p>
+          <p className={asignedClasses}>This is working...</p>
 
-          <StyledButton alt={this.state.showPersons}
-            // style={style}
-            // onClick={this.switchNameHandler.bind(this, "Ercan Erdoğan")}>Switch me</button>
-            onClick={this.togglePersonsHandler}>Toogle Person
-          </StyledButton>
+          <button className={btnClass} onClick={this.togglePersonsHandler}>
+            Toogle Person
+          </button>
+            
           {persons}
 
       </div>
